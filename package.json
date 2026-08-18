@@ -1,0 +1,37 @@
+{
+  "name": "relaylings",
+  "private": true,
+  "version": "0.0.1",
+  "license": "Apache-2.0",
+  "type": "module",
+  "description": "Local-first, delightful collaborative agent delegation with original orb helpers.",
+  "scripts": {
+    "dev": "vite",
+    "dev:connected": "node scripts/dev-connected.mjs",
+    "bridge": "node server/index.mjs",
+    "bridge:env": "node --env-file=.env server/index.mjs",
+    "build": "tsc -p tsconfig.json && vite build && node scripts/check-client-bundle.mjs",
+    "build:pages": "tsc -p tsconfig.json && vite build --base=/relaylings/ && node scripts/check-client-bundle.mjs",
+    "check:release": "npm run check:a11y && npm run typecheck && npm test && npm run build && npm audit --audit-level=high",
+    "preview": "vite preview",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run && node --test server/*.test.mjs",
+    "test:client": "vitest run",
+    "test:server": "node --test server/*.test.mjs",
+    "check:bundle": "node scripts/check-client-bundle.mjs",
+    "check:a11y": "node scripts/check-contrast.mjs",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.12",
+    "@types/react-dom": "18.3.1",
+    "@vitejs/plugin-react": "^6.0.5",
+    "typescript": "5.6.3",
+    "vite": "^8.2.1",
+    "vitest": "^4.1.10"
+  }
+}
